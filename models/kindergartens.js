@@ -5,7 +5,7 @@ const KindergartensModel = mongoose.Schema({
     name: {
         type: String
     },
-    sifra: {
+    code: {
         type: String
     },
     address: {

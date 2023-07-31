@@ -6,7 +6,7 @@ import router from "./routers/Routes.js"
 const app = express()
 connection()
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors())

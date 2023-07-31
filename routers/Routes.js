@@ -10,7 +10,7 @@ const secret = "test";
 
 const router = express.Router();
 //singin
-router.post("/signin", async(req, res) => {
+router.post("/signin", async (req, res) => {
     const { email, password } = req.body;
     try {
         const oldUser = await User.findOne({ email });
@@ -62,26 +62,26 @@ router.post("/signup", async (req, res) => {
 //google
 router.post("/googleSignIn", async (req, res) => {
     const { email, name, token, googleId } = req.body;
-  
+
     try {
-      const oldUser = await UserModal.findOne({ email });
-      if (oldUser) {
-        const result = { _id: oldUser._id.toString(), email, name };
-        return res.status(200).json({ result, token });
-      }
-  
-      const result = await UserModal.create({
-        email,
-        name,
-        googleId,
-      });
-  
-      res.status(200).json({ result, token });
+        const oldUser = await UserModal.findOne({ email });
+        if (oldUser) {
+            const result = { _id: oldUser._id.toString(), email, name };
+            return res.status(200).json({ result, token });
+        }
+
+        const result = await UserModal.create({
+            email,
+            name,
+            googleId,
+        });
+
+        res.status(200).json({ result, token });
     } catch (error) {
-      res.status(500).json({ message: "Something went wrong" });
-      console.log(error);
+        res.status(500).json({ message: "Something went wrong" });
+        console.log(error);
     }
-  });
+});
 
 //postavi profesora
 router.post("/employee", async (req, res) => {
@@ -168,9 +168,9 @@ router.delete("/employee/:id", async (req, res) => {
 //postavi vrtic
 router.post("/kindergartens", async (req, res) => {
 
-    const { name, sifra, address, phone, manager } = req.body
+    const { name, code, address:{city,cityhall,street}, phone, email, manager } = req.body
     const kindergartens = new Kindergartens({
-        name, sifra, address, phone, manager
+        name, code, address:{city,cityhall,street}, phone, email, manager
     })
     try {
         const ubacen = await kindergartens.save()
@@ -214,17 +214,16 @@ router.put("/kindergartens/:id", async (req, res) => {
         const id = req.params.id
         const kindergartens = await Kindergartens.findById(id);
         if (kindergartens) {
-            kindergartens.name = req.body.name || user.name;
-            kindergartens.sifra = req.body.sifra || user.sifra;
-            kindergartens.address = req.body.address || user.address;
-            kindergartens.address.city = req.body.address.city || user.address.city;
-            kindergartens.address.cityhall = req.body.address.cityhall || user.address.cityhall;
-            kindergartens.address.street = req.body.address.street || user.address.street;
-            kindergartens.phone = req.body.phone || user.phone;
-            kindergartens.email = req.body.email || user.email;
-            kindergartens.manager = req.body.manager || user.kindergartens;
+            kindergartens.name = req.body.name || kindergartens.name;
+            kindergartens.code = req.body.code || kindergartens.code;
+            kindergartens.address.city = req.body.address.city || kindergartens.address.city;
+            kindergartens.address.cityhall = req.body.address.cityhall || kindergartens.address.cityhall;
+            kindergartens.address.street = req.body.address.street || kindergartens.address.street;
+            kindergartens.phone = req.body.phone || kindergartens.phone;
+            kindergartens.email = req.body.email || kindergartens.email;
+            kindergartens.manager = req.body.manager || kindergartens.manager;
 
-            const updateUser = await user.save();
+            const updateUser = await kindergartens.save();
 
             res.status(200).json(updateUser)
         }
