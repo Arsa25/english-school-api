@@ -10,11 +10,12 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-// const corsOptions = {
-//     origin: "https://englishschool-project.com",
-//     optionsSuccessStatus: 200,
-//   };
-app.use(cors())
+const corsOptions = {
+    origin: "https://englishschool-project.com",
+    optionsSuccessStatus: 200,
+  };
+
+app.use(cors(corsOptions))
 
 app.use("/api", router)
 
