@@ -8,12 +8,12 @@ connection()
 
 const PORT = process.env.PORT || 3000
 
-app.use(express.json())
-
 const corsOptions = {
-    origin: "https://english-school.onrender.com/api",
+    origin: "https://english-school.onrender.com",
     optionsSuccessStatus: 200,
   };
+app.use(express.json())
+
 
 app.use(cors(corsOptions))
 
