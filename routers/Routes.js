@@ -1,10 +1,10 @@
 import express from "express"
+import User from "../models/Userr.js";
 import Employee from "../models/Employee.js"
 import Kindergartens from "../models/kindergartens.js"
 import Cityhall from "../models/Cityhall.js";
 import bcrypt from "bcryptjs"
 import Jwt from "jsonwebtoken";
-import User from "../models/Userr.js";
 
 const secret = "test";
 

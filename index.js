@@ -6,7 +6,7 @@ import router from "./routers/Routes.js"
 const app = express()
 connection()
 
-const PORT = process.env.PORT || 10000
+const PORT = process.env.PORT 
 
 const corsOptions = {
     origin: "https://english-school.onrender.com",

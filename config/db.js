@@ -2,9 +2,9 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 dotenv.config({path:".env"})
 const conection = async ()=>{
-const password = process.env.PASSWORD
+const mongodbURL = process.env.MONGODB_URL
     try{
-        mongoose.connect(`mongodb+srv://english-school:${password}@english-school.5ysj6mu.mongodb.net/`,{
+        mongoose.connect(`${mongodbURL}`,{
 
             
             // useNewUrlParser:true,
