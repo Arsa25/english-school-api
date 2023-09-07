@@ -6,20 +6,19 @@ import router from "./routers/Routes.js"
 const app = express()
 connection()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 10000
 
 const corsOptions = {
     origin: "https://english-school.onrender.com",
     optionsSuccessStatus: 200,
   };
-app.use(express.json())
-
-
-app.use(cors(corsOptions))
-
-app.use("/api", router)
-
+  
+  app.use(express.json())
+  
+  app.use("/api", router)
+  
+  app.use(cors(corsOptions))
 
 app.listen(PORT, () => {
-    console.log("Uspesno konektovanje");
+    console.log("Uspesno konektovanje",`Port:${PORT}`);
 })
