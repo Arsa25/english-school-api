@@ -1,10 +1,8 @@
 import mongoose from "mongoose"
-import dotenv from "dotenv"
-dotenv.config({path:".env"})
+
 const conection = async ()=>{
-const mongodbURL = process.env.MONGODB_URL
     try{
-        mongoose.connect(`${mongodbURL}`,{
+        mongoose.connect(`mongodb+srv://english-school:tUiLIMbAQ3JUib2d@english-school.5ysj6mu.mongodb.net/`,{
 
             
             // useNewUrlParser:true,
